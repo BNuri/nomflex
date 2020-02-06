@@ -11,14 +11,7 @@ const Container = styled.div`
   padding: 20px;
 `;
 
-const HomePresenter = ({
-  nowPlaying,
-  upcoming,
-  popular,
-  airingToday,
-  loading,
-  error
-}) =>
+const HomePresenter = ({ nowPlaying, upcoming, popular, loading, error }) =>
   loading ? (
     <Loader />
   ) : (
@@ -79,7 +72,6 @@ HomePresenter.propTypes = {
   nowPlaying: PropTypes.array,
   upcoming: PropTypes.array,
   popular: PropTypes.array,
-  airingToday: PropTypes.array,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string
 };

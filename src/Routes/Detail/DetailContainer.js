@@ -12,9 +12,18 @@ export default class extends React.Component {
       result: null,
       error: null,
       loading: true,
-      isMovie: pathname.includes("/movie/")
+      isMovie: pathname.includes("/movie/"),
+      moreInfo: "videos"
     };
   }
+
+  handleChange = event => {
+    const { target } = event;
+    this.setState({
+      moreInfo:
+        target.innerText.toLowerCase() === "videos" ? "videos" : "production"
+    });
+  };
 
   async componentDidMount() {
     const {
@@ -35,7 +44,6 @@ export default class extends React.Component {
       } else {
         ({ data: result } = await tvApi.tvDetail(parsedId));
       }
-      console.log(result);
     } catch {
       this.setState({ error: "Can't find anything." });
     } finally {
@@ -44,8 +52,15 @@ export default class extends React.Component {
   }
 
   render() {
-    const { result, error, loading } = this.state;
-    console.log(this.state);
-    return <DetailPresenter result={result} error={error} loading={loading} />;
+    const { result, error, loading, moreInfo } = this.state;
+    return (
+      <DetailPresenter
+        result={result}
+        error={error}
+        loading={loading}
+        handleChange={this.handleChange}
+        moreInfo={moreInfo}
+      />
+    );
   }
 }

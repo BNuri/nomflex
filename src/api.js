@@ -4,7 +4,7 @@ export const tvApi = {
   tvDetail: id => {
     return api.get(`tv/${id}`, {
       params: {
-        append_to_response: "videos"
+        append_to_response: "videos,person"
       }
     });
   },
@@ -24,7 +24,7 @@ export const moviesApi = {
   movieDetail: id => {
     return api.get(`movie/${id}`, {
       params: {
-        append_to_response: "videos"
+        append_to_response: "videos,person"
       }
     });
   },
@@ -37,5 +37,6 @@ export const moviesApi = {
         query: encodeURIComponent(term)
       }
     });
-  }
+  },
+  collection: id => api.get(`collection/${id}`)
 };
