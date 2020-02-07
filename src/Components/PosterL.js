@@ -121,7 +121,7 @@ const PosterL = ({
         <Content>
           <Title>{title}</Title>
           <Overview>
-            {overview.length > 120
+            {overview && overview.length > 120
               ? overview.substring(0, 120) + "..."
               : overview}
           </Overview>

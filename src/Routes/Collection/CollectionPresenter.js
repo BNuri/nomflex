@@ -41,6 +41,7 @@ const Title = styled.h3`
 
 const Overview = styled.p`
   margin-top: 20px;
+  width: 50vw;
 `;
 
 const Poster = styled.div`

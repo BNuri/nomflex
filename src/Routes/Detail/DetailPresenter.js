@@ -317,7 +317,9 @@ const DetailPresenter = ({ result, loading, error, handleChange, moreInfo }) =>
                         imageUrl={season.poster_path}
                         title={season.name}
                         overview={season.overview}
-                        year={season.air_date.substring(0, 4)}
+                        year={
+                          season.air_date ? season.air_date.substring(0, 4) : ""
+                        }
                         isMovie={false}
                       />
                     ))
