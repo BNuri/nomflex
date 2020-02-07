@@ -26,4 +26,8 @@ Learning React and ES6 by building a Movie Discovery App.
 - [x] Tabs inside of Movie /Shows Details (YT Videos, Production Company & Countries)
 - [x] Collections Link
 - [x] /collections Route
-- [ ] On TV Show, show seasons and creators
+- [x] On TV Show, show seasons and creators
+
+## Preview:
+
+Try it on [netlify](https://goofy-knuth-6c2cbf.netlify.com/#/)
