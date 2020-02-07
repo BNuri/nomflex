@@ -27,7 +27,7 @@
     "deploy": "gh-pages -d build",
     "predeploy": "yarn run build"
   },
-  "homepage": "https://bnuri.github.io/nomflex",
+  "homepage": "https://goofy-knuth-6c2cbf.netlify.com",
   "eslintConfig": {
     "extends": "react-app"
   },
