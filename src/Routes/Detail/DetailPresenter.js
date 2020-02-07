@@ -9,6 +9,8 @@ import Message from "Components/Message";
 import Section from "Components/Section";
 import Company from "Components/Company";
 import ReactCountryFlag from "react-country-flag";
+import PosterL from "Components/PosterL";
+import Creator from "Components/Creator";
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -85,7 +87,7 @@ const Collection = styled.span`
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
   padding: 3px 5px;
-  font-weight: 600;
+  font-weight: 800;
   cursor: pointer;
   opacity: 0.8;
   transition: opacity 0.1s ease-out;
@@ -151,6 +153,18 @@ const MoreInfoBtn = styled.span`
   &:hover {
     opacity: 1;
   }
+`;
+
+const Seasons = styled.div`
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(20, 200px);
+  grid-gap: 30px;
+  overflow-x: auto;
+`;
+
+const Creators = styled.div`
+  display: flex;
 `;
 
 const DetailPresenter = ({ result, loading, error, handleChange, moreInfo }) =>
@@ -234,6 +248,26 @@ const DetailPresenter = ({ result, loading, error, handleChange, moreInfo }) =>
               >
                 Production
               </MoreInfoBtn>
+              {result.seasons && result.seasons.length > 0 ? (
+                <MoreInfoBtn
+                  onClick={handleChange}
+                  current={moreInfo === "seasons"}
+                >
+                  Seasons
+                </MoreInfoBtn>
+              ) : (
+                ""
+              )}
+              {result.created_by && result.created_by.length > 0 ? (
+                <MoreInfoBtn
+                  onClick={handleChange}
+                  current={moreInfo === "creators"}
+                >
+                  Creators
+                </MoreInfoBtn>
+              ) : (
+                ""
+              )}
             </MoreInfoBtnContainer>
             <MoreInfo current={moreInfo === "videos"}>
               {result.videos ? (
@@ -273,6 +307,34 @@ const DetailPresenter = ({ result, loading, error, handleChange, moreInfo }) =>
               ) : (
                 ""
               )}
+            </MoreInfo>
+            <MoreInfo current={moreInfo === "seasons"}>
+              <Seasons>
+                {result.seasons && result.seasons.length > 0
+                  ? result.seasons.map(season => (
+                      <PosterL
+                        id={window.location.pathname.split("/")[2]}
+                        imageUrl={season.poster_path}
+                        title={season.name}
+                        overview={season.overview}
+                        year={season.air_date.substring(0, 4)}
+                        isMovie={false}
+                      />
+                    ))
+                  : ""}
+              </Seasons>
+            </MoreInfo>
+            <MoreInfo current={moreInfo === "creators"}>
+              <Creators>
+                {result.created_by && result.created_by.length > 0
+                  ? result.created_by.map(creator => (
+                      <Creator
+                        imageUrl={creator.profile_path}
+                        name={creator.name}
+                      />
+                    ))
+                  : ""}
+              </Creators>
             </MoreInfo>
           </MoreInfoContainer>
         </InfoContainer>

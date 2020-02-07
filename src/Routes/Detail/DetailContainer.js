@@ -20,8 +20,7 @@ export default class extends React.Component {
   handleChange = event => {
     const { target } = event;
     this.setState({
-      moreInfo:
-        target.innerText.toLowerCase() === "videos" ? "videos" : "production"
+      moreInfo: target.innerText.toLowerCase()
     });
   };
 

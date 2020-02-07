@@ -3,11 +3,12 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import Loader from "Components/Loader";
-import { Link } from "react-router-dom";
+import PosterL from "Components/PosterL";
 
 const Container = styled.div`
   position: relative;
   width: 100%;
+  height: 100%;
   padding: 50px;
   @media (max-width: 1080px) {
     width: 1080px;
@@ -52,99 +53,11 @@ const Poster = styled.div`
 `;
 
 const Contents = styled.div`
+  width: 100vw;
   margin-top: 30px;
   display: grid;
   grid-template-columns: repeat(auto-fill, 200px);
   grid-gap: 25px;
-`;
-
-const ContentTitle = styled.h4`
-  position: relative;
-  margin: 8px 0;
-  font-weight: 600;
-  font-size: 16px;
-  transition-delay: 0.1s;
-`;
-
-const ContentOverview = styled.span`
-  position: relative;
-  opacity: 0.7;
-  hyphens: auto;
-  transition-delay: 0.2s;
-`;
-
-const ContentRow = styled.div`
-  position: relative;
-  margin-top: 5px;
-  display: flex;
-  justify-content: space-between;
-  transition-delay: 0.2s;
-`;
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  padding: 5px;
-  left: 0;
-  bottom: 0;
-  z-index: 3;
-  ${ContentTitle},
-  ${ContentOverview},
-  ${ContentRow} {
-    position: relative;
-    top: 100px;
-    opacity: 0;
-    transition-property: top, opacity;
-    transition-duration: 0.3s;
-  }
-`;
-
-const ContentContainer = styled.div`
-  position: relative;
-  overflow: hidden;
-  &:before {
-    content: "";
-    position: absolute;
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
-    width: 100%;
-    height: 50%;
-    top: 100%;
-    bottom: 0;
-    left: 0;
-    opacity: 0;
-    transition-property: top, opacity;
-    transition-duration: 0.3s;
-    z-index: 2;
-  }
-  &:hover {
-    &:before {
-      opacity: 1;
-      top: 50%;
-    }
-    ${ContentTitle},
-    ${ContentOverview},
-    ${ContentRow} {
-      top: 0;
-      opacity: 1;
-    }
-  }
-`;
-
-const ContentPoster = styled.div`
-  height: 300px;
-  background-image: url(${props => props.contImgUrl});
-  background-size: cover;
-  background-position: center center;
-  border-radius: 5px;
-`;
-
-const ContentRelease = styled.span`
-  opacity: 0.7;
-`;
-
-const ContentRating = styled.span`
-  opacity: 0.7;
 `;
 
 const CollectionPresenter = ({ error, loading, collection }) =>
@@ -169,34 +82,15 @@ const CollectionPresenter = ({ error, loading, collection }) =>
       </InfoContainer>
       <Contents>
         {collection.parts.map(part => (
-          <Link to={`/movie/${part.id}`}>
-            <ContentContainer>
-              <ContentPoster
-                contImgUrl={`https://image.tmdb.org/t/p/original${part.poster_path}`}
-              />
-              <Content>
-                <ContentTitle>{part.original_title}</ContentTitle>
-                <ContentOverview>
-                  {part.overview.length > 130
-                    ? part.overview.substring(0, 130) + "..."
-                    : part.overview}
-                </ContentOverview>
-                <ContentRow>
-                  <ContentRelease>
-                    {part.release_date.substring(0, 4)}
-                  </ContentRelease>
-                  <ContentRating>
-                    <span role="img" aria-label="rating">
-                      ⭐️
-                    </span>
-                    {part.vote_average} / 10{" "}
-                  </ContentRating>
-                </ContentRow>
-              </Content>
-            </ContentContainer>
-          </Link>
+          <PosterL
+            id={part.id}
+            imageUrl={part.poster_path}
+            title={part.original_title}
+            overview={part.overview}
+            rating={part.vote_average}
+            year={part.release_date.substring(0, 4)}
+          />
         ))}
-        <Content></Content>
       </Contents>
     </Container>
   );
