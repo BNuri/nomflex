@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.js": "/nomflex/static/js/main.ef893919.chunk.js",
+    "main.js.map": "/nomflex/static/js/main.ef893919.chunk.js.map",
+    "runtime-main.js": "/nomflex/static/js/runtime-main.19f8d393.js",
+    "runtime-main.js.map": "/nomflex/static/js/runtime-main.19f8d393.js.map",
+    "static/js/2.7767187a.chunk.js": "/nomflex/static/js/2.7767187a.chunk.js",
+    "static/js/2.7767187a.chunk.js.map": "/nomflex/static/js/2.7767187a.chunk.js.map",
+    "index.html": "/nomflex/index.html",
+    "precache-manifest.21a050da6f53bf0308872b7ac364b4b9.js": "/nomflex/precache-manifest.21a050da6f53bf0308872b7ac364b4b9.js",
+    "service-worker.js": "/nomflex/service-worker.js",
+    "static/js/2.7767187a.chunk.js.LICENSE": "/nomflex/static/js/2.7767187a.chunk.js.LICENSE",
+    "static/media/noPosterSmall.png": "/nomflex/static/media/noPosterSmall.dac959db.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.19f8d393.js",
+    "static/js/2.7767187a.chunk.js",
+    "static/js/main.ef893919.chunk.js"
+  ]
+}
