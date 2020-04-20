@@ -22,7 +22,7 @@ const Backdrop = styled.div`
   height: 300px;
   width: 100%;
   background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(20, 20, 20, 1)),
-    url(${props => props.bgUrl});
+    url(${(props) => props.bgUrl});
   z-index: -1;
 `;
 
@@ -47,7 +47,7 @@ const Overview = styled.p`
 const Poster = styled.div`
   height: 200px;
   width: 200px;
-  background-image: url(${props => props.posterUrl});
+  background-image: url(${(props) => props.posterUrl});
   background-position: center center;
   background-size: cover;
   border-radius: 50%;
@@ -82,7 +82,7 @@ const CollectionPresenter = ({ error, loading, collection }) =>
         </Info>
       </InfoContainer>
       <Contents>
-        {collection.parts.map(part => (
+        {collection.parts.map((part) => (
           <PosterL
             id={part.id}
             imageUrl={part.poster_path}
@@ -99,7 +99,7 @@ const CollectionPresenter = ({ error, loading, collection }) =>
 CollectionPresenter.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  collection: PropTypes.object
+  collection: PropTypes.object,
 };
 
 export default CollectionPresenter;

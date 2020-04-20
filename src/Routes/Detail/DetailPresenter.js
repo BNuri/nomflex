@@ -28,7 +28,7 @@ const Backdrop = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(${props => props.bgImage});
+  background-image: url(${(props) => props.bgImage});
   background-position: center center;
   background-size: cover;
   filter: blur(3px);
@@ -47,7 +47,7 @@ const Content = styled.div`
 const Cover = styled.div`
   width: 30%;
   height: 100%;
-  background-image: url(${props => props.posterImage});
+  background-image: url(${(props) => props.posterImage});
   background-position: center center;
   background-size: cover;
   border-radius: 5px;
@@ -73,7 +73,7 @@ const MoreInfoContainer = styled.div`
 `;
 
 const MoreInfo = styled.div`
-  display: ${props => (props.current ? "block" : "none")};
+  display: ${(props) => (props.current ? "block" : "none")};
   padding: 20px 30px;
 `;
 
@@ -113,7 +113,7 @@ const Imdb = styled.a`
   height: 20px;
   width: 40px;
   margin: 0 10px;
-  background: url(${props => props.db_img});
+  background: url(${(props) => props.db_img});
   background-size: cover;
   border-radius: 5px;
   opacity: 0.7;
@@ -138,6 +138,7 @@ const MoreInfoBtnContainer = styled.div`
   width: 100%;
   background-color: inherit;
   font-size: 14px;
+  z-index: 1;
 `;
 
 const MoreInfoBtn = styled.span`
@@ -148,7 +149,7 @@ const MoreInfoBtn = styled.span`
   align-items: center;
   cursor: pointer;
   font-weight: 600;
-  opacity: ${props => (props.current ? 1 : 0.7)};
+  opacity: ${(props) => (props.current ? 1 : 0.7)};
   transition: opacity 0.1s ease-out;
   &:hover {
     opacity: 1;
@@ -156,11 +157,11 @@ const MoreInfoBtn = styled.span`
 `;
 
 const Seasons = styled.div`
-  margin-top: 40px;
+  margin-top: 30px;
   display: grid;
-  grid-template-columns: repeat(20, 200px);
+  grid-template-columns: repeat(auto-fill, 200px);
   grid-gap: 30px;
-  overflow-x: auto;
+  justify-content: center;
 `;
 
 const Creators = styled.div`
@@ -280,7 +281,7 @@ const DetailPresenter = ({ result, loading, error, handleChange, moreInfo }) =>
               {result.production_companies &&
               result.production_companies.length > 0 ? (
                 <Section title="Companies">
-                  {result.production_companies.map(company => (
+                  {result.production_companies.map((company) => (
                     <Company
                       logoUrl={company.logo_path}
                       name={company.name}
@@ -293,13 +294,13 @@ const DetailPresenter = ({ result, loading, error, handleChange, moreInfo }) =>
               {result.production_countries &&
               result.production_countries.length > 0 ? (
                 <Section title="Countries">
-                  {result.production_countries.map(country => (
+                  {result.production_countries.map((country) => (
                     <ReactCountryFlag
                       countryCode={country.iso_3166_1}
                       aria-label={country.name}
                       style={{
                         fontSize: "7em",
-                        textAlign: "center"
+                        textAlign: "center",
                       }}
                     />
                   ))}
@@ -311,7 +312,7 @@ const DetailPresenter = ({ result, loading, error, handleChange, moreInfo }) =>
             <MoreInfo current={moreInfo === "seasons"}>
               <Seasons>
                 {result.seasons && result.seasons.length > 0
-                  ? result.seasons.map(season => (
+                  ? result.seasons.map((season) => (
                       <PosterL
                         id={window.location.pathname.split("/")[2]}
                         imageUrl={season.poster_path}
@@ -329,7 +330,7 @@ const DetailPresenter = ({ result, loading, error, handleChange, moreInfo }) =>
             <MoreInfo current={moreInfo === "creators"}>
               <Creators>
                 {result.created_by && result.created_by.length > 0
-                  ? result.created_by.map(creator => (
+                  ? result.created_by.map((creator) => (
                       <Creator
                         imageUrl={creator.profile_path}
                         name={creator.name}
@@ -349,7 +350,7 @@ DetailPresenter.propTypes = {
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
-  moreInfo: PropTypes.string.isRequired
+  moreInfo: PropTypes.string.isRequired,
 };
 
 export default DetailPresenter;
