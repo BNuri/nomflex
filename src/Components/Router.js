@@ -3,14 +3,14 @@ import {
   HashRouter as Router,
   Route,
   Redirect,
-  Switch
+  Switch,
 } from "react-router-dom";
-import Home from "Routes/Home";
-import TV from "Routes/TV";
-import Search from "Routes/Search";
+import Home from "Screens/Home";
+import TV from "Screens/TV";
+import Search from "Screens/Search";
 import Header from "Components/Header";
-import Detail from "Routes/Detail";
-import Collection from "Routes/Collection";
+import Detail from "Screens/Detail";
+import Collection from "Screens/Collection";
 
 export default () => (
   // eslint-disable-next-line no-unused-expressions

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
+import SearchInput from "Components/SearchInput";
 
 const Header = styled.header`
   position: fixed;
@@ -14,6 +15,8 @@ const Header = styled.header`
   background-color: rgba(20, 20, 20, 0.8);
   z-index: 10;
   box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: space-between;
 `;
 
 const List = styled.ul`
@@ -24,7 +27,8 @@ const Item = styled.li`
   width: 80px;
   height: 50px;
   text-align: center;
-  border-bottom: 3px solid ${props => (props.current ? "white" : "transparent")};
+  border-bottom: 3px solid
+    ${(props) => (props.current ? "white" : "transparent")};
   transition: border-bottom 0.5s ease-in-out;
 `;
 
@@ -44,9 +48,7 @@ export default withRouter(({ location: { pathname } }) => (
       <Item current={pathname === "/tv"}>
         <SLink to="/tv">TV</SLink>
       </Item>
-      <Item current={pathname === "/search"}>
-        <SLink to="/search">Search</SLink>
-      </Item>
     </List>
+    <SearchInput />
   </Header>
 ));
